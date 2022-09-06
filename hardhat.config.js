@@ -23,7 +23,9 @@ module.exports = {
             accounts: [PRIVATE_KEY],
             chainId: 4,
             blockConfirmations: 6,
-            gas: 6000000
+            allowUnlimitedContractSize: true,
+            gas: 5000000,
+            gasPrice: 8000000000,
         }
     },
     etherscan: {
