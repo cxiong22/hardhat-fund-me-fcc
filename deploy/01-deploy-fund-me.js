@@ -19,8 +19,9 @@
  * const helpConfig = require("../helper-hardhat-config")
  * const networkConfig = helpConfig.networkConfig
  */
+
+const { network } = require("hardhat")
 const { networkConfig, developmentChains } = require("../helper-hardhat-config")
-const { getNamedAccounts, deployments, network } = require("hardhat")
 const { verify } = require("../utils/verify")
 
 // we are using this deployments object to get two functions
@@ -44,6 +45,8 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     // when going for localhoast or hardhat network we want to use a mock
     // We don't need contractFactories to deploy, with hardhat-deploy we can just use its deploy function
     log("----------------------------------------------------------")
+    log(deployer)
+    log(ethUsdPriceFeedAddress)
     log("Deploying FundMe and waiting for confirmations...")
     const args = [ethUsdPriceFeedAddress]
     const fundMe = await deploy("FundMe", {

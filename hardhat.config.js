@@ -6,6 +6,7 @@ require("hardhat-gas-reporter")
 require("solidity-coverage")
 require("@nomiclabs/hardhat-waffle")
 
+const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL || ""
 const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL || ""
 const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ""
@@ -22,8 +23,16 @@ module.exports = {
             url: RINKEBY_RPC_URL || "",
             accounts: [PRIVATE_KEY],
             chainId: 4,
-            blockConfirmations: 6,
-            gas: 6000000
+            blockConfirmations: 6
+            //allowUnlimitedContractSize: true,
+            //gas: 5000000,
+            //gasPrice: 8000000000
+        },
+        goerli: {
+            url: GOERLI_RPC_URL || "",
+            accounts: [PRIVATE_KEY],
+            chainId: 5,
+            blockConfirmations: 6
         }
     },
     etherscan: {
@@ -41,7 +50,9 @@ module.exports = {
     namedAccounts: {
         deployer: {
             default: 0, // the 0th account is going to be deployer
-            1: 0
+            1: 0,
+            4: 0,
+            5: 0
             // Can specify which number is going to be deployer account across different chains
             // "4: 1" tells deployer account to be in 1st position in rinkeby or "313317: 1" for hardhat
         }
